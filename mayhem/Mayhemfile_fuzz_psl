@@ -1,0 +1,12 @@
+project: savantenvs/kent
+target: fuzz_psl
+
+# In-process libFuzzer harness over kent's PSL alignment-format parser
+# (mayhem/fuzz_psl.c -> lib/psl.c pslNext/pslLoadLm via an in-memory lineFile).
+cmds:
+  - cmd: /mayhem/fuzz_psl
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_psl/testsuite
